@@ -29,7 +29,7 @@ object SyncMain {
                  .map(word => (word, 1))
                  .reduceByKey(_ + _)
 
-    counts.saveAsTextFile(args(1))
+     counts.saveAsTextFile(args(1))
     logger.info(counts.toDebugString)
   }
 }
