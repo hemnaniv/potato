@@ -61,4 +61,5 @@ Temporary Items
 .idea
 **/pom.properties
 **/output
+**/target
 # End of https://www.gitignore.io/api/macos

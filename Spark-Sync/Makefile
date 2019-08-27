@@ -38,7 +38,7 @@ jar:
 
 # Removes local output directory.
 clean-local-output:
-	rm -rf ${local.output}
+	rm -rf ${local.output}/
 
 # Removes local log directory.
 clean-local-log:

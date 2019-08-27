@@ -24,14 +24,11 @@ object SyncMain {
 	// 	================
 
     val textFile = sc.textFile(args(0))
-    val counts = textFile.map(line => line.split(","))
-                      .flatMap(word => List((word(0), 0), (word(1), 1))) //mapping unfollowed users too : bonus challenge 2
-                      .reduceByKey(_ + _)
-                      .map(word => (word._2, word._1)) //swapping key and value for sorting : bonus challenge 1
-                      .sortByKey(false)
-                      .map(word => (word._2, word._1)) //swapping key and value for final output
+    val counts = textFile.flatMap(line => line.split(" "))
+                 .map(word => (word, 1))
+                 .reduceByKey(_ + _)
 
-    logger.info(counts.toDebugString)
     counts.saveAsTextFile(args(1))
+    logger.info(counts.toDebugString)
   }
 }
