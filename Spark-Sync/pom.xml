@@ -3,7 +3,7 @@
   <groupId>QBSpark</groupId>
   <artifactId>spark-sync</artifactId>
   <packaging>jar</packaging>
-  <version>1.0</sync>
+  <version>1.0</version>
   <name>spark-hw1</name>
   <properties>
     <encoding>UTF-8</encoding>
