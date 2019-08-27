@@ -7,9 +7,8 @@ hadoop.root=${HADOOP_HOME}
 app.name=Sync merge
 jar.name=spark-sync.jar
 maven.jar.name=spark-sync-1.0.jar
-job.name=qb.syncMain
+job.name=qb.SyncMain
 local.master=local[4]
-# local.input=/Users/visheshhemnani/Documents/CS_6240_LS_PDP/data/Twitter-dataset/data
 local.input=input
 local.output=output
 local.log=log
@@ -39,11 +38,11 @@ jar:
 
 # Removes local output directory.
 clean-local-output:
-	rm -rf ${local.output}/${aws.project.version}/*
+	rm -rf ${local.output}
 
 # Removes local log directory.
 clean-local-log:
-	rm -rf ${local.log}/${aws.project.version}/*
+	rm -rf ${local.log}
 
 # Runs standalone
 local: jar clean-local-output
