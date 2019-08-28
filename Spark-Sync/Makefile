@@ -19,8 +19,8 @@ hdfs.output=output
 # AWS EMR Execution
 aws.emr.release=emr-5.20.0
 # Do not edit the bucket name, edit the project name instead
-aws.bucket.name=cs-6240-hemnaniv
-aws.subnet.id=subnet-62e8916d
+aws.bucket.name=sparktestbucket1
+aws.subnet.id=subnet-a5cab0c2
 aws.input=input
 aws.output=output
 aws.log.dir=log
@@ -120,7 +120,7 @@ upload-app-aws:
 # Main EMR launch.
 aws: jar upload-app-aws delete-output-aws
 	aws emr create-cluster \
-		--name "TwitterFollower Spark Cluster Version ${aws.project.version}" \
+		--name "QB Sync Spark Cluster Version ${aws.project.version}" \
 		--release-label ${aws.emr.release} \
 		--instance-groups '[{"InstanceCount":${aws.num.nodes},"InstanceGroupType":"CORE","InstanceType":"${aws.instance.type}"},{"InstanceCount":1,"InstanceGroupType":"MASTER","InstanceType":"${aws.instance.type}"}]' \
 	    --applications Name=Hadoop Name=Spark \
