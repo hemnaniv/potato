@@ -58,19 +58,19 @@ object SyncMain {
       .write
       .mode(SaveMode.Overwrite)
       .options(tsvWithHeaderOptions)
-      .csv("output/inserted")
+      .csv(args(1) + "/inserted")
 
     deleted
       .write
       .mode(SaveMode.Overwrite)
       .options(tsvWithHeaderOptions)
-      .csv("output/deleted")
+      .csv(args(1) + "/deleted")
 
     updated
       .write
       .mode(SaveMode.Overwrite)
       .options(tsvWithHeaderOptions)
-      .csv("output/updated")
+      .csv(args(1) + "/updated")
 
   }
 }
