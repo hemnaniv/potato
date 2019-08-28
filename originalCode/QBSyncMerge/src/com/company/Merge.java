@@ -7,16 +7,16 @@ import java.util.Map;
 
 public class Merge {
 
-    public void mergeRecords(Map<Integer, List<String>> source, Map<Integer, List<String>> destination) {
-        Map<Integer, List<String>> recordsToUpdate = new HashMap<>();
-        List<Integer> recordsToDelete = new ArrayList<>();
+    public void mergeRecords(Map<String, List<String>> source, Map<String, List<String>> destination) {
+        Map<String, List<String>> recordsToUpdate = new HashMap<>();
+        List<String> recordsToDelete = new ArrayList<>();
 
         int deletedRecordsCount = 0;
         int updatedRecordsCount = 0;
         int insertedRecordsCount = 0;
 
 
-        for (int destRecordKey : destination.keySet()) {
+        for (String destRecordKey : destination.keySet()) {
             List<String> destinationRecord = destination.get(destRecordKey);
 
             List<String> sourceRecord = source.get(destRecordKey);
@@ -33,7 +33,7 @@ public class Merge {
             }
         }
 
-        Map<Integer, List<String>> recordsToInsert = source;
+        Map<String, List<String>> recordsToInsert = source;
         insertedRecordsCount = recordsToInsert.size();
     }
 
