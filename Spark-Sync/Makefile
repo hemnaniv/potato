@@ -28,7 +28,7 @@ aws.num.nodes=5
 aws.instance.type=m4.large
 # update job version before running job
 aws.project.version=1
-aws.project.name=hw1-spark
+aws.project.name=qb-sync-spark
 # -----------------------------------------------------------
 
 # Compiles code and builds jar (with dependencies).

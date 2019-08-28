@@ -36,8 +36,8 @@ object SyncMain {
 
   // main code here
 
-  val source = spark.read.csv("../testSparkSyncDataSetUpdated.csv")
-  val dest = spark.read.csv("../testSparkSyncDataSetOriginal.csv")
+  val source = spark.read.csv(args(0) + "/source")
+  val dest = spark.read.csv(args(0) + "/dest")
 
   val deleted = source.as("src").
       join(dest.as("dst"), ($"src._c0" === $"dst._c0"), "right")
