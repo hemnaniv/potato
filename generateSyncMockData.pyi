@@ -1,32 +1,36 @@
-import json
-import sys
+import random, sys
 
-def getRecords(numRecords, numValues, updated=False):
-    recordDict = {}
+def printRecordLine(recordId, numValues):
+    recordString = str(recordId)
+    for valueId in range(numValues):
+        shouldUpdateValue = random.random() > 0.9
+        recordString += "," + "recordValue" + str(valueId) + ("updated" if shouldUpdateValue else "")
+    return recordString
+
+def printCSVRecords(numRecords, numValues, updated=False):
+    allRecordCSV = ""
     for recordId in range(numRecords):
-        recordDict[recordId] = ["RecordField" + str(x) + ("updated" if updated else "") for x in range(numValues)]
+        shouldDeleteRow = random.random() > 0.7
+        if updated and shouldDeleteRow: continue
+        allRecordCSV += printRecordLine(recordId, numValues) + "\n"
+    return allRecordCSV
 
-    return recordDict
 
 # RUN THIS PROGRAM BY RUNNING THIS IN THE CONSOLE: python generateSyncMockData.pyi 10 12
 numRecords = int(sys.argv[1])
 numValuesPerRecord = int(sys.argv[2])
-originalRecords = json.dumps(getRecords(numRecords, numValuesPerRecord))
-updatedRecords = getRecords(numRecords, numValuesPerRecord, updated=True)
 
-def getRecordIDsToFilter(records):
-    return [key for key in records if key % 2 == 0]
+originalRecords = printCSVRecords(numRecords, numValuesPerRecord)
+updatedRecords = printCSVRecords(numRecords, numValuesPerRecord, updated=True)
 
-deleteKeys = getRecordIDsToFilter(updatedRecords)
-for key in deleteKeys: del updatedRecords[key]
 
-print("originalRecords", len(originalRecords))
-file = open("testSparkSyncDataSetOriginal.json","w")
+
+print("originalRecords", originalRecords.count("\n"))
+file = open("testSparkSyncDataSetOriginal.csv","w")
 file.write(originalRecords)
 file.close()
 
-print("updatedRecords", len(updatedRecords))
-file = open("testSparkSyncDataSetUpdated.json","w")
-file.write(json.dumps(updatedRecords))
+print("updatedRecords", updatedRecords.count("\n"))
+file = open("testSparkSyncDataSetUpdated.csv","w")
+file.write(updatedRecords)
 file.close()
-
